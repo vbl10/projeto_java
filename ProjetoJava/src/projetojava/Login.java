@@ -6,6 +6,7 @@ package projetojava;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.sql.*;
 /**
  *
  * @author sp300lab
@@ -20,6 +21,8 @@ public class Login extends JPanel {
     public Login(JPanel cards) {
         this.cards = cards;
         initComponents();
+        lbErrUsuario.setText("");
+        lbErrSenha.setText("");
     }
 
     /**
@@ -34,26 +37,16 @@ public class Login extends JPanel {
         jLabel1 = new javax.swing.JLabel();
         tfUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        pwdfSenha = new javax.swing.JPasswordField();
+        tfSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        lbErrUsuario = new javax.swing.JLabel();
+        lbErrSenha = new javax.swing.JLabel();
 
         jLabel1.setText("Usuário");
 
-        tfUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfUsuarioActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Senha");
-
-        pwdfSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pwdfSenhaActionPerformed(evt);
-            }
-        });
 
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -62,79 +55,116 @@ public class Login extends JPanel {
             }
         });
 
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("Entrar");
 
+        lbErrUsuario.setText("Erro");
+
+        lbErrSenha.setText("Erro");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(pwdfSenha)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfUsuario)
+                    .addComponent(tfSenha)
                     .addComponent(btnEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-                .addGap(133, 133, 133))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbErrUsuario)
+                    .addComponent(lbErrSenha))
+                .addGap(197, 197, 197))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbErrUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pwdfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbErrSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEntrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addComponent(btnRegistrar)
+                .addContainerGap(98, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfUsuarioActionPerformed
-
-    private void pwdfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdfSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pwdfSenhaActionPerformed
-
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        
+        try {
+            Connection conn = ConexaoMySQL.conectarBanco();
+            Statement st = conn.createStatement();
+            
+            //checar se usuário existe
+            ResultSet rs = st.executeQuery(
+                "SELECT * FROM projeto_java.Usuarios where nome = \"" + tfUsuario.getText() + "\";" 
+            );
+            if (!rs.next()) {
+                lbErrUsuario.setText("Usuário não existe");
+                conn.close();
+                return;
+            }
+            
+            //checar se senha está correta
+            if (!rs.getString("senha").contentEquals(new String(tfSenha.getPassword()))) {
+                lbErrSenha.setText("Senha incorreta");
+                conn.close();
+                return;
+            }
+            
+            //fazer login
+            System.out.println("Logado como \"" + rs.getString("nome") + "\"");
+            
+            conn.close();
+        }
+        catch (SQLException e) {
+            System.out.println("[LOGIN] Erro: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
         CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, "REGISTRAR");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField pwdfSenha;
+    private javax.swing.JLabel lbErrSenha;
+    private javax.swing.JLabel lbErrUsuario;
+    private javax.swing.JPasswordField tfSenha;
     private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

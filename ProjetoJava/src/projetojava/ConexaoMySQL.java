@@ -14,10 +14,9 @@ import java.sql.Statement;
  */
 public class ConexaoMySQL {
     static String url = "jdbc:mysql://db4free.net:3306";
-    static void realizarInsert(String sql) throws SQLException {
-        Connection conn = DriverManager.getConnection(url, "projeto_java", "senhadobanco");
-        Statement st = conn.createStatement();
-        st.executeUpdate(sql);
-        conn.close();
+    static String usuario = "projeto_java";
+    static String senha = "senhadobanco";
+    static Connection conectarBanco() throws SQLException {
+        return DriverManager.getConnection(url, usuario, senha);
     }
 }

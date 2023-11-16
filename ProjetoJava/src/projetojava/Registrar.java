@@ -6,21 +6,21 @@ package projetojava;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.sql.SQLException;
+import java.sql.*;
 /**
  *
- * @author sp300lab
+ * @author vinib
  */
-public class Registrar extends javax.swing.JPanel {
-
+public class Registrar extends JPanel {
+    
+    JPanel cards;
     /**
      * Creates new form Registrar
      */
-    JPanel cards;
-    
     public Registrar(JPanel cards) {
         this.cards = cards;
         initComponents();
+        limparMensagens();
     }
 
     /**
@@ -34,27 +34,27 @@ public class Registrar extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        tfEmail = new javax.swing.JTextField();
         tfUsuario = new javax.swing.JTextField();
-        pwdfSenha = new javax.swing.JPasswordField();
-        pwdfConfSenha = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        lbMensagem = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tfEmail = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        tfSenha = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
+        tfConfirmaSenha = new javax.swing.JPasswordField();
+        btnRegistrar = new javax.swing.JButton();
         lbResultado = new javax.swing.JLabel();
+        lbErrUsuario = new javax.swing.JLabel();
+        lbErrEmail = new javax.swing.JLabel();
+        lbErrSenha = new javax.swing.JLabel();
+        lbErrConfirmaSenha = new javax.swing.JLabel();
+        bntVoltar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Registrar");
 
-        jLabel2.setText("E-mail");
+        jLabel2.setText("Usuario");
 
-        jLabel3.setText("Nome de usuário");
-
-        jLabel4.setText("Senha");
-
-        jLabel5.setText("Confirmar senha");
+        jLabel3.setText("E-mail");
 
         tfEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,68 +62,101 @@ public class Registrar extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setText("Senha (pelo menos 8 caracteres)");
+
+        jLabel5.setText("Confirma senha");
+
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
 
         lbResultado.setText("Resultado");
 
+        lbErrUsuario.setText("Erro");
+
+        lbErrEmail.setText("Erro");
+
+        lbErrSenha.setText("Erro");
+
+        lbErrConfirmaSenha.setText("Erro");
+
+        bntVoltar.setText("Voltar");
+        bntVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
-                .addComponent(lbMensagem)
-                .addGap(260, 260, 260))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(tfEmail)
-                    .addComponent(jLabel3)
-                    .addComponent(tfUsuario)
-                    .addComponent(pwdfSenha)
-                    .addComponent(pwdfConfSenha)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(bntVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfConfirmaSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbResultado)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbErrUsuario)
+                            .addComponent(lbErrEmail))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbErrSenha)
+                            .addComponent(lbErrConfirmaSenha)
+                            .addComponent(lbResultado))
+                        .addContainerGap(166, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbResultado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbErrUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addGap(1, 1, 1)
-                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbErrEmail))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pwdfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbErrSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pwdfConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbErrConfirmaSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(lbMensagem)
-                .addGap(19, 19, 19))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistrar)
+                    .addComponent(lbResultado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bntVoltar))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,36 +164,104 @@ public class Registrar extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfEmailActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String sql = "insert into projeto_java.Usuarios (nome, senha, email) values (";
-        sql += "\"" + tfUsuario.getText() + "\", ";
-        sql += "\"" + new String(pwdfSenha.getPassword()) + "\", ";
-        sql += "\"" + tfEmail.getText() + "\");";
+    private void limparMensagens() {
+        lbErrUsuario.setText("");
+        lbErrEmail.setText("");
+        lbErrSenha.setText("");
+        lbErrConfirmaSenha.setText("");
+        lbResultado.setText("");
+    }
+    
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        limparMensagens();
         try {
-            lbResultado.setText("Conectando...");
-            ConexaoMySQL.realizarInsert(sql);
+            //checar se usuario já existe
+            Connection conn = ConexaoMySQL.conectarBanco();
+            Statement st = conn.createStatement();
+            
+            ResultSet rs = st.executeQuery(
+                "SELECT nome FROM projeto_java.Usuarios WHERE nome = \"" + tfUsuario.getText() + "\";"
+            );
+            if (rs.next()) {
+                lbErrUsuario.setText("Nome de usuário já existe");
+                conn.close();
+                return;
+            }
+            
+            //checar se e-mail é válido
+            int indiceArroba = tfEmail.getText().indexOf('@');
+            if (
+                indiceArroba == -1 || indiceArroba == 0 || 
+                indiceArroba ==  tfEmail.getText().length() - 1 || 
+                tfEmail.getText().indexOf('@', indiceArroba + 1) != -1
+            ) {
+                lbErrEmail.setText("E-mail inválido");
+                conn.close();
+                return;
+            }
+            
+            //checar se e-mail já existe
+            rs = st.executeQuery(
+                "SELECT email FROM projeto_java.Usuarios WHERE email = \"" + tfEmail.getText() + "\";"
+            );
+            if (rs.next()) {
+                lbErrEmail.setText("E-mail já registrado");
+                conn.close();
+                return;
+            }
+            
+            //checar tamanho da senha
+            if (tfSenha.getPassword().length < 8) {
+                lbErrSenha.setText("Senha muito curta");
+                conn.close();
+                return;
+            }
+            //checar se senhas batem
+            if (!(new String(tfSenha.getPassword())).contentEquals(new String(tfConfirmaSenha.getPassword()))) {
+                lbErrConfirmaSenha.setText("Senhas não são iguais");
+                conn.close();
+                return;
+            }
+            
+        
+            //inserir novo usuario
+            String sql = "insert into projeto_java.Usuarios (nome, senha, email) values (";
+            sql += "\"" + tfUsuario.getText() + "\", ";
+            sql += "\"" + new String(tfSenha.getPassword()) + "\", ";
+            sql += "\"" + tfEmail.getText() + "\");";
+            st.executeUpdate(sql);
             lbResultado.setText("Sucesso");
+            
+            conn.close();
         }
         catch (SQLException e) {
-            lbResultado.setText("Erro: " + e.getMessage());
+            System.out.println("Erro: " + e.getMessage());
         }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void bntVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntVoltarActionPerformed
+        limparMensagens();
+        CardLayout cl = (CardLayout)(cards.getLayout());
+        cl.show(cards, "LOGIN");
+    }//GEN-LAST:event_bntVoltarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bntVoltar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel lbMensagem;
+    private javax.swing.JLabel lbErrConfirmaSenha;
+    private javax.swing.JLabel lbErrEmail;
+    private javax.swing.JLabel lbErrSenha;
+    private javax.swing.JLabel lbErrUsuario;
     private javax.swing.JLabel lbResultado;
-    private javax.swing.JPasswordField pwdfConfSenha;
-    private javax.swing.JPasswordField pwdfSenha;
+    private javax.swing.JPasswordField tfConfirmaSenha;
     private javax.swing.JTextField tfEmail;
+    private javax.swing.JPasswordField tfSenha;
     private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

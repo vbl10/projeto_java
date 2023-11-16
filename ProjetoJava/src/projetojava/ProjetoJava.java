@@ -24,7 +24,7 @@ public class ProjetoJava extends javax.swing.JFrame {
         cards.add(new Login(cards), "LOGIN");
         cards.add(new Registrar(cards), "REGISTRAR");
         
-        getContentPane().add(cards, BorderLayout.CENTER);
+        getContentPane().add(cards, BorderLayout.PAGE_START);
         pack();
         
         initComponents();
@@ -49,7 +49,7 @@ public class ProjetoJava extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
 
         pack();

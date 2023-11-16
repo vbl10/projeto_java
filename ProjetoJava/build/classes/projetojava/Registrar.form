@@ -19,17 +19,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="bntVoltar" max="32767" attributes="0"/>
+                  <Component id="bntVoltar" min="-2" pref="170" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfConfirmaSenha" alignment="0" max="32767" attributes="0"/>
-                  <Component id="tfSenha" alignment="0" max="32767" attributes="0"/>
-                  <Component id="tfEmail" alignment="0" max="32767" attributes="0"/>
-                  <Component id="tfUsuario" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnRegistrar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tfConfirmaSenha" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                  <Component id="tfSenha" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                  <Component id="tfEmail" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                  <Component id="btnRegistrar" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                  <Component id="tfUsuario" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -46,7 +46,7 @@
                           <Component id="lbErrConfirmaSenha" min="-2" max="-2" attributes="0"/>
                           <Component id="lbResultado" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="166" max="32767" attributes="0"/>
+                      <EmptySpace pref="366" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -55,7 +55,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -92,6 +92,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="bntVoltar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="160" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

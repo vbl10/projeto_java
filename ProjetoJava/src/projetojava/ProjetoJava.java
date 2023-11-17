@@ -21,6 +21,7 @@ public class ProjetoJava extends javax.swing.JFrame {
         setTitle("ProjetoJava");
         
         cards = new JPanel(new CardLayout());
+        
         cards.add(new Minesweeper(cards), "MINESWEEPER");
         cards.add(new Login(cards), "LOGIN");
         cards.add(new Registrar(cards), "REGISTRAR");
@@ -47,11 +48,11 @@ public class ProjetoJava extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 698, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 462, Short.MAX_VALUE)
+            .addGap(0, 588, Short.MAX_VALUE)
         );
 
         pack();

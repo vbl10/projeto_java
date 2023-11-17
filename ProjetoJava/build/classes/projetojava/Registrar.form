@@ -46,7 +46,7 @@
                           <Component id="lbErrConfirmaSenha" min="-2" max="-2" attributes="0"/>
                           <Component id="lbResultado" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="366" max="32767" attributes="0"/>
+                      <EmptySpace pref="464" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -92,7 +92,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="bntVoltar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="160" max="32767" attributes="0"/>
+              <EmptySpace pref="286" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

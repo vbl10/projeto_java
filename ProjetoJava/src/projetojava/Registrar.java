@@ -120,7 +120,7 @@ public class Registrar extends JPanel {
                             .addComponent(lbErrSenha)
                             .addComponent(lbErrConfirmaSenha)
                             .addComponent(lbResultado))
-                        .addContainerGap(366, Short.MAX_VALUE))))
+                        .addContainerGap(464, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +157,7 @@ public class Registrar extends JPanel {
                     .addComponent(lbResultado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bntVoltar)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

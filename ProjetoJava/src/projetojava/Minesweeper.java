@@ -12,14 +12,14 @@ public class Minesweeper extends javax.swing.JPanel {
     
     JPanel cards;
     
-    JButton btnField[];
+    JButton btnCampo[];
     
     private final int dimX = 16;
     private final int dimY = 16;
     private final int dimBtn = 36;
-    private final int bombas = 35;
-    private boolean field[], revelado[], marcado[];
-    private int marcas = 0, reveladas = 0;
+    private final int qtd_bombas = 35;
+    private final boolean campo[], revelado[], marcado[];
+    private int qtd_marcas = 0, qtd_reveladas = 0;
     private boolean minado = false;
     private int tempo = 0;
     private int melhor = -1;
@@ -53,16 +53,16 @@ public class Minesweeper extends javax.swing.JPanel {
             lbTempo.setText(formataTempo(tempo));
         });
         
-        lbMarcas.setText("0/" + Integer.toString(bombas));
+        lbMarcas.setText("0/" + Integer.toString(qtd_bombas));
         
-        field = new boolean[dimX * dimY];
+        campo = new boolean[dimX * dimY];
         revelado = new boolean[dimX * dimY];
         marcado = new boolean[dimX * dimY];
-        btnField = new JButton[dimX * dimY];
+        btnCampo = new JButton[dimX * dimY];
         
         for (int y = 0; y < dimY; y++) {
             for (int x = 0; x < dimX; x++) {
-                JButton btn = btnField[x + y * dimX] = new JButton();
+                JButton btn = btnCampo[x + y * dimX] = new JButton();
                 btn.setFont(new java.awt.Font("Segoi UI", 0, 14));
                 btn.setSize(dimBtn, dimBtn);
                 btn.setLocation(x * dimBtn, y * dimBtn);
@@ -79,8 +79,8 @@ public class Minesweeper extends javax.swing.JPanel {
                             int x = (int)btn.getClientProperty("x");
                             int y = (int)btn.getClientProperty("y");
                             marcado[x + y * dimX] = !marcado[x + y * dimX];
-                            marcas += marcado[x + y * dimX] ? 1 : -1;
-                            lbMarcas.setText(Integer.toString(marcas) + "/" + Integer.toString(bombas));
+                            qtd_marcas += marcado[x + y * dimX] ? 1 : -1;
+                            lbMarcas.setText(Integer.toString(qtd_marcas) + "/" + Integer.toString(qtd_bombas));
                             btn.setText(marcado[x + y * dimX] ? "f" : "");
                         }
                     }
@@ -201,27 +201,27 @@ public class Minesweeper extends javax.swing.JPanel {
     
     private void reset() {
         for (int i = 0; i < dimX * dimY; i++) {
-            field[i] = false;
+            campo[i] = false;
             marcado[i] = false;
             revelado[i] = false;
-            btnField[i].setText("");
-            btnField[i].setEnabled(true);
+            btnCampo[i].setText("");
+            btnCampo[i].setEnabled(true);
         }
         minado = false;
-        marcas = 0;
+        qtd_marcas = 0;
         tempo = 0;
         lbTempo.setText("00:00");
         
     }
     
     private void minar(int nx, int ny) {
-        for (int i = 0; i < bombas; i++) {
+        for (int i = 0; i < qtd_bombas; i++) {
             int x, y;
             do {
                 x = (int)(Math.random() * dimX);
                 y = (int)(Math.random() * dimY);
-            } while ((x == nx && y == ny) || field[x + y * dimX]);
-            field[x + y * dimX] = true;
+            } while ((x == nx && y == ny) || campo[x + y * dimX]);
+            campo[x + y * dimX] = true;
         }
         minado = true;
         timer.start();
@@ -231,16 +231,16 @@ public class Minesweeper extends javax.swing.JPanel {
         int nBombas = 0;
         for (int y1 = y - 1; y1 <= y + 1; y1++) {
             for (int x1 = x - 1; x1 <= x + 1; x1++) {
-                if (y1 >= 0 && y1 < dimY && x1 >= 0 && x1 < dimX && field[x1 + y1 * dimX]) {
+                if (y1 >= 0 && y1 < dimY && x1 >= 0 && x1 < dimX && campo[x1 + y1 * dimX]) {
                     nBombas++;
                 }
             }
         }
-        reveladas++;
-        btnField[x + y * dimX].setEnabled(false);
+        qtd_reveladas++;
+        btnCampo[x + y * dimX].setEnabled(false);
         revelado[x + y * dimX] = true;
         if (nBombas > 0) {
-            btnField[x + y * dimX].setText(Integer.toString(nBombas));
+            btnCampo[x + y * dimX].setText(Integer.toString(nBombas));
         }
         else {
             for (int y1 = y - 1; y1 <= y + 1; y1++) {
@@ -257,9 +257,9 @@ public class Minesweeper extends javax.swing.JPanel {
         if (!marcado[x + y * dimX]) {
             if (!minado)
                 minar(x, y);
-            if (!field[x + y * dimX]) {
+            if (!campo[x + y * dimX]) {
                 revelaCelula(x, y);
-                if (dimX * dimY - reveladas == bombas) {
+                if (dimX * dimY - qtd_reveladas == qtd_bombas) {
                     //ganhou
                     timer.stop();
                     if (tempo < melhor || melhor == -1) {

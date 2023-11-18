@@ -12,9 +12,10 @@ import java.sql.Connection;
  * @author sp300lab
  */
 public class ConexaoMySQL {
-    static String url = "jdbc:mysql://db4free.net:3306";
-    static String usuario = "projeto_java";
-    static String senha = "senhadobanco";
+    private static String url = "jdbc:mysql://db4free.net:3306";
+    private static String usuario = "projeto_java";
+    private static String senha = "senhadobanco";
+    
     static Connection conectarBanco() throws SQLException {
         return DriverManager.getConnection(url, usuario, senha);
     }

@@ -35,8 +35,6 @@ public class Registrar extends JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tfUsuario = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        tfEmail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         tfSenha = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
@@ -44,7 +42,6 @@ public class Registrar extends JPanel {
         btnRegistrar = new javax.swing.JButton();
         lbResultado = new javax.swing.JLabel();
         lbErrUsuario = new javax.swing.JLabel();
-        lbErrEmail = new javax.swing.JLabel();
         lbErrSenha = new javax.swing.JLabel();
         lbErrConfirmaSenha = new javax.swing.JLabel();
         bntVoltar = new javax.swing.JButton();
@@ -52,15 +49,7 @@ public class Registrar extends JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Registrar");
 
-        jLabel2.setText("Usuario");
-
-        jLabel3.setText("E-mail");
-
-        tfEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfEmailActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Usuario (no máximo 30 caracteres)");
 
         jLabel4.setText("Senha (pelo menos 8 caracteres)");
 
@@ -75,12 +64,13 @@ public class Registrar extends JPanel {
 
         lbResultado.setText("Resultado");
 
+        lbErrUsuario.setForeground(new java.awt.Color(255, 0, 0));
         lbErrUsuario.setText("Erro");
 
-        lbErrEmail.setText("Erro");
-
+        lbErrSenha.setForeground(new java.awt.Color(255, 0, 0));
         lbErrSenha.setText("Erro");
 
+        lbErrConfirmaSenha.setForeground(new java.awt.Color(255, 0, 0));
         lbErrConfirmaSenha.setText("Erro");
 
         bntVoltar.setText("Voltar");
@@ -96,31 +86,31 @@ public class Registrar extends JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(bntVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfConfirmaSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfConfirmaSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbErrUsuario)
-                            .addComponent(lbErrEmail))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbErrUsuario)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbErrSenha)
+                                    .addComponent(lbErrConfirmaSenha)
+                                    .addComponent(lbResultado))
+                                .addContainerGap(341, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbErrSenha)
-                            .addComponent(lbErrConfirmaSenha)
-                            .addComponent(lbResultado))
-                        .addContainerGap(464, Short.MAX_VALUE))))
+                        .addComponent(bntVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,12 +123,6 @@ public class Registrar extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbErrUsuario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbErrEmail))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -157,17 +141,12 @@ public class Registrar extends JPanel {
                     .addComponent(lbResultado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bntVoltar)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(369, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfEmailActionPerformed
-
     private void limparMensagens() {
         lbErrUsuario.setText("");
-        lbErrEmail.setText("");
         lbErrSenha.setText("");
         lbErrConfirmaSenha.setText("");
         lbResultado.setText("");
@@ -188,28 +167,7 @@ public class Registrar extends JPanel {
                 conn.close();
                 return;
             }
-            
-            //checar se e-mail é válido
-            int indiceArroba = tfEmail.getText().indexOf('@');
-            if (
-                indiceArroba == -1 || indiceArroba == 0 || 
-                indiceArroba ==  tfEmail.getText().length() - 1 || 
-                tfEmail.getText().indexOf('@', indiceArroba + 1) != -1
-            ) {
-                lbErrEmail.setText("E-mail inválido");
-                conn.close();
-                return;
-            }
-            
-            //checar se e-mail já existe
-            rs = st.executeQuery(
-                "SELECT email FROM projeto_java.Usuarios WHERE email = \"" + tfEmail.getText() + "\";"
-            );
-            if (rs.next()) {
-                lbErrEmail.setText("E-mail já registrado");
-                conn.close();
-                return;
-            }
+           
             
             //checar tamanho da senha
             if (tfSenha.getPassword().length < 8) {
@@ -226,10 +184,9 @@ public class Registrar extends JPanel {
             
         
             //inserir novo usuario
-            String sql = "insert into projeto_java.Usuarios (nome, senha, email) values (";
+            String sql = "insert into projeto_java.Usuarios (nome, senha) values (";
             sql += "\"" + tfUsuario.getText() + "\", ";
             sql += "\"" + new String(tfSenha.getPassword()) + "\", ";
-            sql += "\"" + tfEmail.getText() + "\");";
             st.executeUpdate(sql);
             lbResultado.setText("Sucesso");
             
@@ -252,16 +209,13 @@ public class Registrar extends JPanel {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lbErrConfirmaSenha;
-    private javax.swing.JLabel lbErrEmail;
     private javax.swing.JLabel lbErrSenha;
     private javax.swing.JLabel lbErrUsuario;
     private javax.swing.JLabel lbResultado;
     private javax.swing.JPasswordField tfConfirmaSenha;
-    private javax.swing.JTextField tfEmail;
     private javax.swing.JPasswordField tfSenha;
     private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables

@@ -14,14 +14,15 @@ public class Minesweeper extends javax.swing.JPanel {
     
     JButton btnField[];
     
-    final int dimX = 16;
-    final int dimY = 16;
-    final int dimBtn = 36;
-    final int bombas = 35;
-    boolean field[], revelado[], marcado[];
-    int marcas = 0;
-    boolean minado = false;
-    int tempo = 0;
+    private final int dimX = 16;
+    private final int dimY = 16;
+    private final int dimBtn = 36;
+    private final int bombas = 35;
+    private boolean field[], revelado[], marcado[];
+    private int marcas = 0, reveladas = 0;
+    private boolean minado = false;
+    private int tempo = 0;
+    private int melhor = -1;
     
     Timer timer;
     
@@ -29,6 +30,19 @@ public class Minesweeper extends javax.swing.JPanel {
      * Creates new form Minesweeper
      * @param cards
      */
+    
+    private String formataTempo(int t) {
+        int min = t / 60;
+        int seg = t % 60;
+        String str = new String();
+        if (min < 10) str += '0';
+        str += min;
+        str += ':';
+        if (seg < 10) str += '0';
+        str += seg;
+        return str;
+    }
+    
     public Minesweeper(JPanel cards) {
         this.cards = cards;
         
@@ -36,15 +50,7 @@ public class Minesweeper extends javax.swing.JPanel {
         
         timer = new Timer(1000, (java.awt.event.ActionEvent evt) -> {
             tempo += 1;
-            int min = tempo / 60;
-            int seg = tempo % 60;
-            String str = new String();
-            if (min < 10) str += '0';
-            str += min;
-            str += ':';
-            if (seg < 10) str += '0';
-            str += seg;
-            lbTempo.setText(str);
+            lbTempo.setText(formataTempo(tempo));
         });
         
         lbMarcas.setText("0/" + Integer.toString(bombas));
@@ -100,7 +106,7 @@ public class Minesweeper extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         lbTempo = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbMelhor = new javax.swing.JLabel();
         btnRecomecar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -126,8 +132,8 @@ public class Minesweeper extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Melhor:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("00:00");
+        lbMelhor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbMelhor.setText("00:00");
 
         btnRecomecar.setText("Recomeçar");
         btnRecomecar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,43 +156,16 @@ public class Minesweeper extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRecomecar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(lbTempo)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(12, 12, 12))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(lbMarcas))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbTempo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(lbMelhor)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -194,8 +173,25 @@ public class Minesweeper extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRecomecar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addGap(80, 80, 80))))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lbTempo)
+                    .addComponent(jLabel3)
+                    .addComponent(lbMelhor)
+                    .addComponent(jLabel5)
+                    .addComponent(lbMarcas)
+                    .addComponent(btnRecomecar)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -213,6 +209,9 @@ public class Minesweeper extends javax.swing.JPanel {
         }
         minado = false;
         marcas = 0;
+        tempo = 0;
+        lbTempo.setText("00:00");
+        
     }
     
     private void minar(int nx, int ny) {
@@ -237,6 +236,7 @@ public class Minesweeper extends javax.swing.JPanel {
                 }
             }
         }
+        reveladas++;
         btnField[x + y * dimX].setEnabled(false);
         revelado[x + y * dimX] = true;
         if (nBombas > 0) {
@@ -257,10 +257,21 @@ public class Minesweeper extends javax.swing.JPanel {
         if (!marcado[x + y * dimX]) {
             if (!minado)
                 minar(x, y);
-            if (!field[x + y * dimX])
+            if (!field[x + y * dimX]) {
                 revelaCelula(x, y);
-            else
+                if (dimX * dimY - reveladas == bombas) {
+                    //ganhou
+                    timer.stop();
+                    if (tempo < melhor || melhor == -1) {
+                        melhor = tempo;
+                        lbMelhor.setText(formataTempo(melhor));
+                    }
+                }
+            }
+            else {
+                //perdeu
                 timer.stop();
+            }
         }
     }
     
@@ -269,9 +280,9 @@ public class Minesweeper extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lbMarcas;
+    private javax.swing.JLabel lbMelhor;
     private javax.swing.JLabel lbTempo;
     private javax.swing.JPanel pnlCampo;
     // End of variables declaration//GEN-END:variables

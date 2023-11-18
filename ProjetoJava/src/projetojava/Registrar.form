@@ -16,37 +16,39 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="bntVoltar" min="-2" pref="170" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfConfirmaSenha" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                  <Component id="tfSenha" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                  <Component id="tfEmail" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                  <Component id="btnRegistrar" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                  <Component id="tfUsuario" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-              </Group>
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbErrUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbErrEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfConfirmaSenha" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="tfSenha" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="btnRegistrar" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="tfUsuario" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lbErrUsuario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbErrSenha" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbErrConfirmaSenha" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbResultado" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="341" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbErrSenha" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbErrConfirmaSenha" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbResultado" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="464" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="bntVoltar" min="-2" pref="170" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -63,13 +65,6 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="tfUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbErrUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbErrEmail" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -92,7 +87,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="bntVoltar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="286" max="32767" attributes="0"/>
+              <EmptySpace pref="369" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,20 +103,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Usuario"/>
+        <Property name="text" type="java.lang.String" value="Usuario (no m&#xe1;ximo 30 caracteres)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfUsuario">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="E-mail"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="tfEmail">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfEmailActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -152,21 +137,25 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lbErrUsuario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Erro"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbErrEmail">
-      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Erro"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbErrSenha">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Erro"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbErrConfirmaSenha">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Erro"/>
       </Properties>
     </Component>

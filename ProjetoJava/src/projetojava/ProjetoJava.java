@@ -13,7 +13,8 @@ import javax.swing.*;
  */
 public class ProjetoJava extends javax.swing.JFrame {
 
-     JPanel cards;
+     public JPanel cards;
+     public int user_id = -1;
     /**
      * Creates new form ProjetoJava
      */
@@ -22,6 +23,7 @@ public class ProjetoJava extends javax.swing.JFrame {
         
         cards = new JPanel(new CardLayout());
         
+        cards.add(new Inicio(this), "INICIO");
         cards.add(new Minesweeper(cards), "MINESWEEPER");
         cards.add(new Login(cards), "LOGIN");
         cards.add(new Registrar(cards), "REGISTRAR");
@@ -48,11 +50,11 @@ public class ProjetoJava extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 698, Short.MAX_VALUE)
+            .addGap(0, 588, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 588, Short.MAX_VALUE)
+            .addGap(0, 621, Short.MAX_VALUE)
         );
 
         pack();
@@ -84,7 +86,7 @@ public class ProjetoJava extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ProjetoJava.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
